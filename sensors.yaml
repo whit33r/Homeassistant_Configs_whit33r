@@ -1,0 +1,77 @@
+  - platform: darksky
+    api_key: a901754e0385f1eca39795c102791426
+    monitored_conditions:
+      - summary
+      - icon
+      - nearest_storm_distance
+      - precip_intensity
+      - precip_probability
+      - cloud_cover
+    update_interval: '00:03'
+    language: hu
+
+  - platform: yr
+    name: Időjárás
+  - platform: mqtt
+    name: "Hőmérséklet Konyha"
+    state_topic: "/home/temp/kitchen"
+    qos: 0
+    force_update: true
+    unit_of_measurement: "°C"
+    device_class: temperature  
+  - platform: mqtt
+    name: "Hőmérséklet Szoba"
+    state_topic: "/home/temp/room"
+    qos: 0
+    force_update: true
+    unit_of_measurement: "°C"
+    device_class: temperature
+  - platform: mqtt
+    name: "Hőmérséklet Külső"
+    state_topic: "/home/temp/outside"
+    qos: 0
+    force_update: true
+    unit_of_measurement: "°C"
+    device_class: temperature  
+  - platform: mqtt
+    name: "Volt"
+    state_topic: "sonoff/volt"
+    icon: mdi:power
+    unit_of_measurement: "V"
+    force_update: true
+  - platform: mqtt
+    name: "Jelenlegi Teljesítmény"
+    state_topic: "sonoff/power"
+    icon: mdi:power
+    unit_of_measurement: "W"
+    force_update: true
+  - platform: mqtt
+    name: "Össz Fogyasztás"
+    state_topic: "sonoff/totalenergy"
+    icon: mdi:power
+    unit_of_measurement: "kWh"
+    force_update: true
+  - platform: mqtt
+    name: "Fényerősség"
+    icon: mdi:spotlight-beam
+    state_topic: "room/ambient_light"
+    unit_of_measurement: "Lux"
+    force_upcate: true
+    device_class: illuminance
+  - platform: snmp
+    host: 10.10.0.1
+    community: public
+    baseoid: 1.3.6.1.2.1.4.22.1.2
+  - platform: snmp
+    name: snmp_wan_in
+    host: 10.10.0.1
+    baseoid: 1.3.6.1.2.1.2.2.1.10.2
+  - platform: snmp
+    name: snmp_wan_out
+    host: 10.10.0.1
+    baseoid: 1.3.6.1.2.1.2.2.1.16.2
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home/whit33r/raid
+      - type: memory_free

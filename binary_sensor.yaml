@@ -1,0 +1,66 @@
+#binary_sensor:
+#  - platform: mqtt
+#    state_topic: sensor/maindoor/motion
+#    name: "Bejárati Ajtó"
+#    alias_on: 'Nyitva'
+#    alias_off: 'Zárva'
+
+  - platform: mqtt
+    name: "Bejárati Ajtó"
+    icon: mdi:door
+    state_topic: "sensor/maindoor/motion"
+    qos: 0
+    payload_on: "Nyitva"
+    payload_off: "Zárva"
+    alias_on: 'Nyitva'
+    alias_off: 'Zárva'
+    device_class: opening
+
+  - platform: mqtt
+    name: "Bejárati Ajtó Zár"
+    state_topic: "sensor/maindoor/lock"
+    icon: mdi:lock
+    qos: 0
+    payload_on: "Nyitva"
+    payload_off: "Zárva"
+    alias_on: 'Nyitva'
+    alias_off: 'Zárva'
+    device_class: opening
+    homebridge_opening_type: window
+
+  - platform: mqtt
+    name: "Mozgásérzékelő"
+    state_topic: "sensor/maindoor/motionsen"
+    qos: 0
+    payload_on: "Nyitva"
+    payload_off: "Zárva"
+    alias_on: 'Mozgás'
+    alias_off: 'Nincs Mozgás'
+    device_class: motion
+    
+  - platform: mqtt
+    name: "Mozgásérzékelő Fürdő"
+    state_topic: "sensor/bathroom/motionsen"
+    qos: 0
+    payload_on: "Nyitva"
+    payload_off: "Zárva"
+    alias_on: 'Mozgás'
+    alias_off: 'Nincs Mozgás'
+    device_class: motion
+    
+  - platform: mqtt
+    name: "Mozgásérzékelő Wc"
+    state_topic: "sensor/wc/motionsen"
+    qos: 0
+    payload_on: "Nyitva"
+    payload_off: "Zárva"
+    alias_on: 'Mozgás'
+    alias_off: 'Nincs Mozgás'
+    device_class: motion
+
+  - platform: command_line
+    name: Mosquitto
+    command: sudo systemctl status mosquitto.service | awk 'FNR==3 { print $3 }'
+    device_class: connectivity
+    payload_on: "(running)"
+    payload_off: "(dead)"

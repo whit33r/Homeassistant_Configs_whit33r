@@ -1,0 +1,28 @@
+  mozi_bekapcsolasa:
+    sequence:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.yamaha
+      - delay: '00:00:01'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.benq
+      - delay: '00:00:02'
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.yamaha_receiver
+          source: FireTV Stick
+
+  mozi_kikapcsolasa:
+    sequence:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.yamaha
+      - delay: '00:00:01'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.benq
+      - delay: '00:00:01'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.benq

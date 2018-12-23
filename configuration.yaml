@@ -1,0 +1,236 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Otthon
+  # Location required to calculate the time the sun rises and sets
+  latitude: 46.83
+  longitude: 16.82
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 152
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Budapest
+  # Customization file
+  customize: !include customize.yaml
+
+influxdb:
+  host: addon_a0d7b954_influxdb
+  port: !secret influxdbprt
+  database: home_assistant
+  username: !secret influxdbusr
+  password: !secret influxdbpw
+  max_retries: 3
+  default_measurement: state
+ios:
+  push:
+    categories:
+      - name: Alarm
+        identifier: 'alarm'
+        actions:
+          - identifier: 'SOUND_ALARM'
+            title: 'Sound Alarm'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+          
+recorder:
+history:
+logbook:
+cloud:
+discovery:
+hassio:
+homekit:
+  filter:
+    include_domains:
+      - light
+      - media_player
+      - binary_sensor
+      - climate
+      - fan
+      - switch
+      - lock
+      - sensor
+
+frontend:
+  themes:
+    cold:
+      primary-text-color: '#447ebc'
+      label-badge-red: '#447ebc'
+    comfortable:
+      primary-text-color: '#629e51'
+      label-badge-red: '#629e51'
+    hot:
+      primary-text-color: '#bf1b00'
+      label-badge-red: '#bf1b00'
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+#frontend:
+
+camera:
+  - platform: ffmpeg
+    input: 'rtsp://10.10.1.140:6554/user=whit33r&password=basH3Rfr&channel=1&stream=0.sdp?real_stream--rtp-caching=100'
+    name: Bejárat Kamera
+
+    
+#ffmpeg:
+#  ffmpeg_bin: /usr/bin/ffmpeg
+
+# Enables configuration UI
+config:
+
+climate:
+  - platform: generic_thermostat
+    name: Szoba Termosztát
+    heater: switch.szoba_futopanel
+    target_sensor: sensor.homerseklet_szoba
+
+http:
+   api_password: !secret http_password
+   ssl_certificate: /ssl/fullchain.pem
+   ssl_key: /ssl/privkey.pem
+#   base_url: !secret url
+
+mqtt:
+  broker: localhost
+  keepalive: 60
+  discovery: true
+  discovery_prefix: homeassistant
+
+device_tracker:
+  - platform: snmp
+    host: 10.10.0.1
+    community: public
+    baseoid: 1.3.6.1.2.1.4.22.1.2
+#    new_device_defaults:
+#      track_new_devices: True
+#      hide_if_away: False
+
+media_player:
+  - platform: kodi
+    host: 10.10.0.128
+  - platform: yamaha
+    host: 10.10.1.17
+    source_ignore:
+      - "AUX"
+      - "HDMI6"
+      - "USB"
+      - "TUNER"
+      - "SERVER"
+      - "Qobuz"
+      - "NET RADIO"
+      - "JUKE"
+      - "HDMI1"
+      - "HDMI3"
+      - "HDMI4"
+      - "AUDIO1"
+      - "AUDIO2"
+      - "AV1"
+      - "AV2"
+      - "AV3"
+      - "AV4"
+      - "AUX"
+      - "AirPlay"
+      - "Bluetooth"
+      - "MusicCast Link"
+    source_names:
+      HDMI2: "FireTV Stick"
+
+notify:
+  - name: pushover-noti
+    platform: pushover
+    api_key: !secret notifyapi
+    user_key: !secret notifykey
+
+emulated_hue:
+  host_ip: 10.10.0.22
+  listen_port: 8300
+  off_maps_to_on_domains:
+    - script
+  expose_by_default: true
+  exposed_domains:
+    - light
+    - switch
+    - script
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+   include_used_components: true
+
+# Discover some devices automatically
+#discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+#wemo:
+
+# Track the sun
+sun:
+
+
+scene:
+  - name: night_on
+#    friendly_name: night_light
+    entities:
+      light.szoba_vilagitas:
+       state: on
+       brightness: 1
+       rgb_color: [0, 0, 255]
+  - name: night_off
+#    friendly_name: night_light
+    entities:
+      light.szoba_vilagitas:
+       state: off
+  - name: dim_up_movie
+    entities:
+      light.szoba_vilagitas:
+       state: on
+       brightness: 250
+       rgb_color: [255, 255, 255]
+       transition: 5
+  - name: dim_down_movie
+    entities:
+      light.szoba_vilagitas:
+       state: on
+       brightness: 2
+       rgb_color: [0, 0, 255]
+       transition: 5
+  - name: media_on
+    entities:
+      switch.yamaha:
+        state: on
+
+alexa:
+
+#intent_script: !include alexa_intents.yaml
+
+# Text to speech
+#tts:
+#  - platform: google
+
+automation: !include automation.yaml
+#script: !include scripts.yaml
+sensor: !include sensors.yaml
+light: !include light.yaml
+binary_sensor: !include binary_sensor.yaml
+switch: !include switch.yaml
+script: !include script.yaml
+group: !include group.yaml

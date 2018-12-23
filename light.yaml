@@ -1,0 +1,91 @@
+  - platform: mqtt
+    schema: json
+    name: "Függöny Világítás"
+    state_topic: "home/room/light/curtain"
+    command_topic: "home/room/light/curtain/set"
+    effect: true
+    effect_list:
+      - bpm
+      - candy cane  
+      - confetti  
+      - cyclon rainbow  
+      - dots  
+      - fire  
+      - glitter  
+      - juggle  
+      - lightning
+      - noise  
+      - police all  
+      - police one  
+      - rainbow  
+      - rainbow with glitter  
+      - ripple  
+      - sinelon  
+      - solid  
+      - twinkle
+      - Thanksgiving
+    brightness: true
+    flash: true
+    rgb: true
+    optimistic: false
+    qos: 0
+
+  - platform: mqtt
+    schema: json
+    name: "Kis Karácsonyfa"
+    state_topic: "whit33r/strip_test"
+    command_topic: "whit33r/strip_test/set"
+    effect: true
+    effect_list:
+      - bpm
+      - candy cane
+      - confetti
+      - cyclon rainbow
+      - dots
+      - fire
+      - glitter
+      - juggle
+      - lightning
+      - noise
+      - police all
+      - police one
+      - rainbow
+      - rainbow with glitter
+      - ripple
+      - sinelon
+      - solid
+      - twinkle
+    brightness: true
+    flash: true
+    rgb: true
+    optimistic: false
+    qos: 0
+
+  - platform: mqtt
+    schema: json
+    name: "Karácsonyfa"
+    alias: "Karácsonyfa"
+    state_topic: "homeassistant/room/tree"
+    command_topic: "homeassistant/room/tree/set"
+#    brightness: true
+    icon: mdi:pine-tree
+    optimistic: false
+    qos: 0
+
+  - platform: mqtt
+    schema: json
+    name: "szoba hangulatfeny_wemos"
+    state_topic: "homeassistant/whit33r/wemosd1"
+    command_topic: "homeassistant/whit33r/room/wemosd1"
+#   rightness: true
+    optimistic: true
+    qos: 0
+
+  - platform: mqtt
+    schema: json
+    name: "Ablak dekoráció"
+    state_topic: "homeassistant/kitchen/windowdecor"
+    command_topic: "homeassistant/kitchen/windowdecor/set"
+#   rightness: true
+    optimistic: false
+    qos: 0

@@ -1,0 +1,140 @@
+  default_view:
+    view: yes
+    icon: mdi:home-assistant
+    entities:
+      - group.room
+      - group.kitchen
+      - group.hallway
+      - group.climate
+      - group.power
+      - group.media
+      - group.awesome_people
+      - group.system
+  room:
+    name: Szoba
+    entities:
+      - light.karacsonyfa
+#      - light.kis_karacsonyfa
+      - light.fuggony_vilagitas
+      - switch.szoba_vilagitas
+#      - switch.test
+      - sensor.fenyerosseg
+#      - automation.When_lightoff_lockoff
+#      - automation.When_lighton_lockoff
+#      - script.mozi_bekapcsolasa
+#      - script.mozi_kikapcsolasa
+#      - climate.study
+#      - scene.dim_up_movie
+#      - scene.dim_down_movie
+#      - automation.media_player_pausedstopped
+#      - automation.media_player_pausedstopped_
+  kitchen:
+    name: Konyha
+#    view: no
+    entities:
+      - switch.konyha_vilagitas
+      - light.ablak_dekoracio
+  hallway:
+    name: Folyosó
+    entities:
+      - switch.folyoso_vilagitas
+      - switch.furdo_vilagitas
+      - switch.wc_vilagitas
+#      - switch.folyoso_vilagitas2
+#      - switch.folyoso_vilagitas3
+      - binary_sensor.bejarati_ajto
+      - binary_sensor.bejarati_ajto_zar
+      - binary_sensor.mozgaserzekelo
+      - binary_sensor.mozgaserzekelo_furdo
+      - binary_sensor.mozgaserzekelo_wc
+      - camera.bejarat_kamera
+#  upstairs:
+#    name: Kids
+#    icon: mdi:account-multiple
+#    view: yes
+#    entities:
+#      - input_boolean.notify_home
+#      - camera.demo_camera
+#      - device_tracker.demo_paulus
+#      - group.garden
+  climate:
+    name: Hőmérséklet
+    view: no
+    icon: mdi:weather-cloudy
+    entities:
+      - sensor.homerseklet_szoba
+      - sensor.homerseklet_konyha
+      - sensor.homerseklet_kulso
+      - sensor.dark_sky_icon
+      - sensor.dark_sky_nearest_storm_distance
+      - sensor.dark_sky_precip_intensity
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_summary
+      - climate.szoba_termosztat
+      - switch.szoba_futopanel
+      #- switch.fogyasztasmero
+  power:
+    name: Fogyasztás
+#    view: no
+    entities:
+      - sensor.volt
+      - sensor.jelenlegi_teljesitmeny
+      - sensor.ossz_fogyasztas
+  system:
+    name: Rendszer
+    entities:
+      - binary_sensor.mosquitto
+      - sensor.disk_use_percent_homewhit33rraid
+      - sensor.memory_free
+
+  media:
+    name: Média Eszközök
+#    view: no
+    entities:
+      - media_player.kodi
+      - media_player.spotify
+      - media_player.yamaha_receiver
+  awesome_people:
+    name: Emberek
+    view: no
+    entities:
+      - device_tracker.lg_g4lan
+      - device_tracker.whit33r_samsung_s7lan
+  status_tab:
+    name: Státusz
+    view: yes
+    icon: mdi:gauge-full
+    entities:
+      - group.status
+  status:
+    name: Státusz
+    view: no
+    entities:
+      - binary_sensor.mosquitto
+      - sensor.disk_use_percent_homewhit33rraid
+      - sensor.memory_free
+  script_tab:
+    name: Stkript
+    view: yes
+    icon: mdi:script
+    entities:
+      - group.script
+  script:
+    name: Automatizálások
+    view: no
+    entities:
+      - automation.When_lightoff_lockoff
+      - automation.When_lighton_lockoff
+      - script.mozi_bekapcsolasa
+      - script.mozi_kikapcsolasa
+      - scene.dim_up_movie
+      - scene.dim_down_movie
+      - automation.media_player_pausedstopped
+      - automation.media_player_pausedstopped_
+      - automation.notify_pushover
+      - automation.turn_off_kitchen_light_10_minutes_after_last_movement
+      - automation.turn_off_kitchen_light_10_minutes_after_last_movement_
+      - automation.turn_off_kitchen_light_10_minutes_after_last_movement_wc
+      - automation.turn_on_kitchen_light_when_there_is_movement
+      - automation.turn_on_kitchen_light_when_there_is_movement_
+      - automation.turn_on_kitchen_light_when_there_is_movement_wc

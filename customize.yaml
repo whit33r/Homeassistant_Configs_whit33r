@@ -1,0 +1,16 @@
+script.mozi_bekapcsolasa:
+  icon: mdi:filmstrip
+  friendly_name: Mozi Bekapcsolása
+script.mozi_kikapcsolasa:
+  icon: mdi:filmstrip
+  friendly_name: Mozi Kikapcsolása
+binary_sensor.bejarati_ajto:
+  device_class: door
+binary_sensor.bejarati_ajto_zar:
+  device_class: lock
+sensor.homerseklet_szoba:
+  templates:
+    theme: "if (state > 25) {\n  return 'hot';\n} else if (state >= 18 ) {\n  return\
+      \ 'comfortable';\n} else {\n  return 'cold';\n}\n"
+light.karacsonyfa:
+  icon: mdi:pine-tree
