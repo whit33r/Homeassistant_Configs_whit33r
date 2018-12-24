@@ -1,3 +1,4 @@
+
 homeassistant:
   name: Otthon
   latitude: 46.83410755425139
@@ -5,7 +6,7 @@ homeassistant:
   elevation: 152
   unit_system: metric
   time_zone: Europe/Budapest
- 
+  customize: !include customize.yaml
 
 influxdb:
   host: addon_a0d7b954_influxdb
@@ -152,4 +153,3 @@ script: !include script.yaml
 group: !include group.yaml
 ios: !include ios.yaml
 device_tracker: !include device_tracker.yaml
-customize: !include customize.yaml

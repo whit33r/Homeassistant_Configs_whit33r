@@ -6,6 +6,8 @@
 !*.yaml
 !.gitignore
 !*.md
+!*Nodered_backup
+!*.backup
 
 # Ignore folders.
 .storage
