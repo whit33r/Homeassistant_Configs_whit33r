@@ -14,20 +14,9 @@
     name: Szoba
     entities:
       - light.karacsonyfa
-#      - light.kis_karacsonyfa
       - light.fuggony_vilagitas
       - switch.szoba_vilagitas
-#      - switch.test
       - sensor.fenyerosseg
-#      - automation.When_lightoff_lockoff
-#      - automation.When_lighton_lockoff
-#      - script.mozi_bekapcsolasa
-#      - script.mozi_kikapcsolasa
-#      - climate.study
-#      - scene.dim_up_movie
-#      - scene.dim_down_movie
-#      - automation.media_player_pausedstopped
-#      - automation.media_player_pausedstopped_
   kitchen:
     name: Konyha
 #    view: no
@@ -40,8 +29,6 @@
       - switch.folyoso_vilagitas
       - switch.furdo_vilagitas
       - switch.wc_vilagitas
-#      - switch.folyoso_vilagitas2
-#      - switch.folyoso_vilagitas3
       - binary_sensor.bejarati_ajto
       - binary_sensor.bejarati_ajto_zar
       - binary_sensor.mozgaserzekelo
@@ -98,8 +85,8 @@
     name: Emberek
     view: no
     entities:
-      - device_tracker.lg_g4lan
-      - device_tracker.whit33r_samsung_s7lan
+      - device_tracker.palsiphone
+      - device_tracker.mariaiphoneja
   status_tab:
     name: Státusz
     view: yes
@@ -123,18 +110,5 @@
     name: Automatizálások
     view: no
     entities:
-      - automation.When_lightoff_lockoff
-      - automation.When_lighton_lockoff
       - script.mozi_bekapcsolasa
       - script.mozi_kikapcsolasa
-      - scene.dim_up_movie
-      - scene.dim_down_movie
-      - automation.media_player_pausedstopped
-      - automation.media_player_pausedstopped_
-      - automation.notify_pushover
-      - automation.turn_off_kitchen_light_10_minutes_after_last_movement
-      - automation.turn_off_kitchen_light_10_minutes_after_last_movement_
-      - automation.turn_off_kitchen_light_10_minutes_after_last_movement_wc
-      - automation.turn_on_kitchen_light_when_there_is_movement
-      - automation.turn_on_kitchen_light_when_there_is_movement_
-      - automation.turn_on_kitchen_light_when_there_is_movement_wc

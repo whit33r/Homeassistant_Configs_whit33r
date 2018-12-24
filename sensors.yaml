@@ -75,3 +75,16 @@
       - type: disk_use_percent
         arg: /home/whit33r/raid
       - type: memory_free
+      
+  - platform: template
+    sensors:
+      battery_iphone:
+        friendly_name: feri_iphone_battery
+        unit_of_measurement: '%'
+        value_template: >-
+            {%- if states.device_tracker.palsiphone.attributes.battery %}
+                {{ states.device_tracker.palsiphone.attributes.battery|round }}
+            {% else %}
+                {{ states.sensor.battery_iphone.state }}
+            {%- endif %}
+        device_class: battery

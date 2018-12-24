@@ -57,28 +57,6 @@
     retain: true
     
   - platform: mqtt
-    name: "Folyosó Világítás2"
-    icon: mdi:lightbulb
-    alias: "kitchen_light2"
-    state_topic: "home/sonoff/test/1/stat"
-    command_topic: "home/sonoff/test/1"
-    qos: 1
-    payload_on: "on"
-    payload_off: "off"
-    retain: true
-    
-  - platform: mqtt
-    name: "Folyosó Világítás3"
-    icon: mdi:lightbulb
-    alias: "kitchen_light3"
-    state_topic: "home/sonoff/test/2/stat"
-    command_topic: "home/sonoff/test/2"
-    qos: 1
-    payload_on: "on"
-    payload_off: "off"
-    retain: true
-    
-  - platform: mqtt
     name: "Szoba Fűtőpanel"
     alias: "heater test"
     icon: mdi:radiator
@@ -104,15 +82,6 @@
     alias: "szoba_vilagitas"
     state_topic: "home/sonoff/room/1/stat"
     command_topic: "home/sonoff/room/1"
-    qos: 1
-    payload_on: "on"
-    payload_off: "off"
-    retain: true
-
-  - platform: mqtt
-    name: "test"
-    state_topic: "home/sonoff/test/1/stat"
-    command_topic: "home/sonoff/test/1"
     qos: 1
     payload_on: "on"
     payload_off: "off"

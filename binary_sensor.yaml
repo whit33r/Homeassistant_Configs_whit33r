@@ -1,10 +1,3 @@
-#binary_sensor:
-#  - platform: mqtt
-#    state_topic: sensor/maindoor/motion
-#    name: "Bejárati Ajtó"
-#    alias_on: 'Nyitva'
-#    alias_off: 'Zárva'
-
   - platform: mqtt
     name: "Bejárati Ajtó"
     icon: mdi:door
