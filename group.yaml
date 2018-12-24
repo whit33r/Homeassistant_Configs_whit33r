@@ -71,21 +71,19 @@
     name: Rendszer
     entities:
       - binary_sensor.mosquitto
-      - sensor.disk_use_percent_homewhit33rraid
-      - sensor.memory_free
 
   media:
     name: Média Eszközök
 #    view: no
     entities:
-      - media_player.kodi
-      - media_player.spotify
+      - media_player.moziszoba
+#      - media_player.spotify
       - media_player.yamaha_receiver
   awesome_people:
     name: Emberek
     view: no
     entities:
-      - device_tracker.palsiphone
+      - device_tracker.ferenciphoneja
       - device_tracker.mariaiphoneja
   status_tab:
     name: Státusz

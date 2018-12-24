@@ -58,34 +58,17 @@
     unit_of_measurement: "Lux"
     force_upcate: true
     device_class: illuminance
-  - platform: snmp
-    host: 10.10.0.1
-    community: public
-    baseoid: 1.3.6.1.2.1.4.22.1.2
-  - platform: snmp
-    name: snmp_wan_in
-    host: 10.10.0.1
-    baseoid: 1.3.6.1.2.1.2.2.1.10.2
-  - platform: snmp
-    name: snmp_wan_out
-    host: 10.10.0.1
-    baseoid: 1.3.6.1.2.1.2.2.1.16.2
-  - platform: systemmonitor
-    resources:
-      - type: disk_use_percent
-        arg: /home/whit33r/raid
-      - type: memory_free
-      
+
   - platform: template
     sensors:
-      battery_iphone:
+      battery_iphone_feri:
         friendly_name: feri_iphone_battery
         unit_of_measurement: '%'
         value_template: >-
-            {%- if states.device_tracker.palsiphone.attributes.battery %}
-                {{ states.device_tracker.palsiphone.attributes.battery|round }}
+            {%- if states.device_tracker.ferenciphoneja.attributes.battery %}
+                {{ states.device_tracker.ferenciphoneja.attributes.battery|round }}
             {% else %}
-                {{ states.sensor.battery_iphone.state }}
+                {{ states.sensor.battery_iphone_feri.state }}
             {%- endif %}
         device_class: battery
         

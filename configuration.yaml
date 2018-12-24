@@ -1,4 +1,3 @@
-
 homeassistant:
   name: Otthon
   latitude: 46.83410755425139
@@ -7,6 +6,13 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/Budapest
   customize: !include customize.yaml
+  
+conversation:
+history:
+logbook:
+map:
+sun:
+alexa:
 
 influxdb:
   host: addon_a0d7b954_influxdb
@@ -16,8 +22,12 @@ influxdb:
   password: !secret influxdbpw
   max_retries: 3
   default_measurement: state
-          
-recorder:
+
+apple_tv:
+  - host: 10.10.1.181
+    login_id: 00000003-bd3e-9ff2-d106-ce803e1b4ca9
+    credentials: 91E6A768D456A33A:5AFBC05A04334F47F1EAA32BE9A6C46403841C79347ED4129D98F76DD3B1B9BB
+    
 cloud:
 discovery:
 hassio:
@@ -76,42 +86,45 @@ mqtt:
   discovery: true
   discovery_prefix: homeassistant
 
-media_player:
-  - platform: kodi
-    host: 10.10.0.128
-  - platform: yamaha
-    host: 10.10.1.17
-    source_ignore:
-      - "AUX"
-      - "HDMI6"
-      - "USB"
-      - "TUNER"
-      - "SERVER"
-      - "Qobuz"
-      - "NET RADIO"
-      - "JUKE"
-      - "HDMI1"
-      - "HDMI3"
-      - "HDMI4"
-      - "AUDIO1"
-      - "AUDIO2"
-      - "AV1"
-      - "AV2"
-      - "AV3"
-      - "AV4"
-      - "AUX"
-      - "AirPlay"
-      - "Bluetooth"
-      - "MusicCast Link"
-    source_names:
-      HDMI2: "FireTV Stick"
+#media_player:
+#  - platform: kodi
+#    host: 10.10.0.128
+#  - platform: yamaha
+#    host: 10.10.1.17
+#    source_ignore:
+#      - "AUX"
+#      - "HDMI6"
+#      - "USB"
+#      - "TUNER"
+#      - "SERVER"
+#      - "Qobuz"
+#      - "NET RADIO"
+#      - "JUKE"
+#      - "HDMI1"
+#      - "HDMI3"
+#      - "HDMI4"
+#      - "AUDIO1"
+#      - "AUDIO2"
+#      - "AV1"
+#      - "AV2"
+#      - "AV3"
+#      - "AV4"
+#      - "AUX"
+#      - "AirPlay"
+#      - "Bluetooth"
+#      - "MusicCast Link"
+#    source_names:
+#      HDMI2: "FireTV Stick"
 
 notify:
   - name: pushover-noti
     platform: pushover
     api_key: !secret notifyapi
     user_key: !secret notifykey
-  - name: MariIosApp
+  - name: iosferi
+    platform: ios
+    target: 82fb16ae-ff77-35db-a7e0-8ca32114d6ad
+  - name: iosmom
     platform: ios
     target: 1fc596fb-05e2-33a7-b6f9-1dc1b04a8b9d
     
@@ -136,12 +149,7 @@ emulated_hue:
 
 updater:
    include_used_components: true
-conversation:
-history:
-logbook:
-map:
-sun:
-alexa:
+
 
 automation: !include automation.yaml
 #script: !include scripts.yaml
