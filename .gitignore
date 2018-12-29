@@ -19,3 +19,4 @@ ip_bans.yaml
 secrets.yaml
 known_devices.yaml
 device_tracker.yaml
+camera.yaml

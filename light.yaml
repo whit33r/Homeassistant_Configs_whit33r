@@ -40,6 +40,7 @@
     icon: mdi:pine-tree
     optimistic: false
     qos: 0
+    
 
   - platform: mqtt
     schema: json
@@ -49,3 +50,21 @@
 #   rightness: true
     optimistic: false
     qos: 0
+    
+    #-------------------------------------------------
+    #-----------------TESTING AREA--------------------
+    #-------------------------------------------------
+
+    
+  - platform: mqtt
+    name: "mqtt1"
+    state_topic: "/ESP_Easy/mqtt1/state"
+    command_topic: "/ESP_Easy/gpio/2"
+    payload_on: 0
+    payload_off: 1
+    optimistic: false
+    
+    
+    
+    
+    

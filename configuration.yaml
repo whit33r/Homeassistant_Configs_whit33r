@@ -28,6 +28,16 @@ apple_tv:
     login_id: 00000003-bd3e-9ff2-d106-ce803e1b4ca9
     credentials: 91E6A768D456A33A:5AFBC05A04334F47F1EAA32BE9A6C46403841C79347ED4129D98F76DD3B1B9BB
     
+panel_iframe:
+  nodered:
+    title: Node-RED
+    icon: mdi:sitemap
+    url: !secret noderedurl
+  ide:
+    title: IDE
+    icon: mdi:code-braces
+    url: !secret ideurl
+    
 cloud:
 discovery:
 hassio:
@@ -57,14 +67,9 @@ frontend:
       primary-text-color: '#bf1b00'
       label-badge-red: '#bf1b00'
 
-camera:
-  - platform: ffmpeg
-    input: 'rtsp://10.10.1.140:6554/user=whit33r&password=basH3Rfr&channel=1&stream=0.sdp?real_stream--rtp-caching=100'
-    name: Bejárat Kamera
-
     
-#ffmpeg:
-#  ffmpeg_bin: /usr/bin/ffmpeg
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
 
 config:
 
@@ -161,3 +166,4 @@ script: !include script.yaml
 group: !include group.yaml
 ios: !include ios.yaml
 device_tracker: !include device_tracker.yaml
+camera: !include camera.yaml

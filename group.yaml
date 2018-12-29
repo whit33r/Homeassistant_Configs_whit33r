@@ -110,3 +110,4 @@
     entities:
       - script.mozi_bekapcsolasa
       - script.mozi_kikapcsolasa
+      - light.mqtt1
