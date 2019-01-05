@@ -11,7 +11,7 @@
       - group.awesome_people
 #      - group.system
       - group.zones
-      - group.Zigbee
+#      - group.zigbee_group
   room:
     name: Szoba
     entities:
@@ -22,7 +22,7 @@
  #     - sensor.fenyerosseg
   zigbee_group:
     name: Zigbee
-    view: yes
+    view: no
     entities:
       - input_boolean.zigbee_permit_join
       - timer.zigbee_permit_join
@@ -40,6 +40,7 @@
       - light.0x000b57fffe8a0038_light
       - light.0xd0cf5efffe7a08f7_light
       - light.0x000b57fffe9757aa_light
+      - light.0x90fd9ffffe0f74af_light
       - binary_sensor.bejarati_ajto
       - binary_sensor.bejarati_ajto_zar
       - binary_sensor.mozgaserzekelo

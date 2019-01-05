@@ -67,11 +67,11 @@ homekit:
       - binary_sensor.bejarati_ajto
       - binary_sensor.bejarati_ajto_zar
       - input_boolean.zigbee_permit_join
-      - script.mozi_bekapcsolasa
-      - script.mozi_kikapcsolasa
       - sensor.homerseklet_konyha
       - sensor.homerseklet_kulso
       - sensor.homerseklet_szoba
+      - input_boolean.movie_mode
+      - input_boolean.me_present
   entity_config:
     light.0x000b57fffe8a0038_light:
       name: Tükrös Lámpa
@@ -181,6 +181,10 @@ input_boolean:
     name: Allow devices to join
     initial: off
     icon: mdi:cellphone-wireless
+  movie_mode:
+    name: Mozi Mód
+    initial: off
+    icon: mdi:projector
 
 emulated_hue:
   host_ip: 10.10.0.22

@@ -30,26 +30,6 @@
     alias_on: 'Mozgás'
     alias_off: 'Nincs Mozgás'
     device_class: motion
-    
-  - platform: mqtt
-    name: "Mozgásérzékelő Fürdő"
-    state_topic: "sensor/bathroom/motionsen"
-    qos: 0
-    payload_on: "Nyitva"
-    payload_off: "Zárva"
-    alias_on: 'Mozgás'
-    alias_off: 'Nincs Mozgás'
-    device_class: motion
-    
-  - platform: mqtt
-    name: "Mozgásérzékelő Wc"
-    state_topic: "sensor/wc/motionsen"
-    qos: 0
-    payload_on: "Nyitva"
-    payload_off: "Zárva"
-    alias_on: 'Mozgás'
-    alias_off: 'Nincs Mozgás'
-    device_class: motion
 
   - platform: command_line
     name: Mosquitto
