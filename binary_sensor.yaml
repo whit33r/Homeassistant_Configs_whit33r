@@ -57,3 +57,8 @@
     device_class: connectivity
     payload_on: "(running)"
     payload_off: "(dead)"
+    
+    
+  - platform: mqtt
+    state_topic: dummy/floorplan/sensor
+    name: Floorplan

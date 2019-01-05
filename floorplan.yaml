@@ -1,0 +1,121 @@
+      name: Demo Floorplan
+      image: /local/custom_ui/floorplan/floorplan.svg
+      stylesheet: /local/custom_ui/floorplan/floorplan.css
+      
+      # These options are optional
+      # warnings:                  # enable warnings (to find out why things might ot be working correctly)
+      # pan_zoom:                  # enable experimental panning / zooming
+      # hide_app_toolbar:          # hide the application toolbar (when used as a custom panel)
+      # date_format: DD-MMM-YYYY   # Date format to use in hover-over text
+      
+      last_motion_entity: sensor.template_last_motion
+      last_motion_class: last-motion
+
+      groups:
+
+        - name: Sensors
+          entities:
+             -  sensor.dark_sky_temperature
+          #text_template: '${entity.state ? entity.state : "unknown"}'
+          # An example of rounding up a number, i.e. a temperature of 90.1 becomes 91
+          text_template: '${entity.state ? Math.ceil(entity.state) : "undefined"}'  
+          class_template: '
+            var temp = parseFloat(entity.state.replace("°", ""));
+            if (temp < 10)
+              return "temp-low";
+            else if (temp < 30)
+              return "temp-medium";
+            else
+              return "temp-high";
+            '
+
+        - name: Lights
+          entities:
+             - light.karacsonyfa
+             - light.fuggony_vilagitas
+             - light.ablak_dekoracio
+          states:
+            - state: 'on'
+              class: 'light-on'
+            - state: 'off'
+              class: 'light-off'
+          action:
+            domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
+            service: toggle
+
+        - name: Switches
+          entities:
+             - switch.konyha_vilagitas
+             - switch.furdo_vilagitas
+             - switch.szoba_vilagitas
+             - switch.wc_vilagitas
+             - switch.folyoso_vilagitas
+          states:
+            - state: 'on'
+              class: 'switch-on'
+            - state: 'off'
+              class: 'switch-off'
+          action:
+            domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
+            service: toggle
+
+        - name: NVR
+          entities:
+             - binary_sensor.blue_iris_nvr
+          text_template: '${(entity.state === "on") ? "online" : "offline"}'
+          states:
+            - state: 'off'
+              class: 'danger-text'
+            - state: 'on'
+              class: 'success-text'
+
+        - name: Binary sensors
+          entities:
+            - binary_sensor.mozgaserzekelo
+          states:
+            - state: 'off'
+              class: 'alarm-disarmed'
+            - state: 'on'
+              class: 'alarm-armed'
+
+              
+        - name: Door Sensors
+          entities:
+            - binary_sensor.bejarati_ajto_zar
+          states:
+            - state: 'off'
+              class: 'lock-on'
+            - state: 'on'
+              class: 'lock-off'
+          state_transitions:
+            - name: On to off
+              to_state: 'off'
+              from_state: 'on'
+              duration: 1
+
+        - name: Cameras
+          entities:
+            - camera.hallway
+            - camera.driveway
+            - camera.front_door
+            - camera.backyard
+          states:
+            - state: 'idle'
+              class: 'camera-idle'
+              
+        - name: temp
+          entities:
+            - sensor.homerseklet_szoba
+            - sensor.homerseklet_konyha
+            - sensor.homerseklet_kulso
+          class_template: 'return "static-temp";'
+
+
+#        - name: text_states
+#          entities:
+#            - sensor.downstairs_thermostat_humidity
+#            - sensor.dark_sky_temperature
+#            - sensor.last_message
+#          text_template: '${entity.state ? entity.state.replace(/\s{2,}/g,"") : "undefined"}'
+#
+# The above text_template uses jQuery syntax to search and replace any instance of 2 consecutive (or more) spaces in a string of text.

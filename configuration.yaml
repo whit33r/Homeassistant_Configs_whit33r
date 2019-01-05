@@ -13,6 +13,9 @@ logbook:
 map:
 sun:
 alexa:
+#lyric:
+#  client_id: WL7rnI60g7mDFT9jVRjGrvkH8GG4EZao
+#  client_secret: budOAFDirseBjiD6
 
 influxdb:
   host: addon_a0d7b954_influxdb
@@ -40,32 +43,59 @@ panel_iframe:
     
 cloud:
 discovery:
+  enable: 
+    - homekit
 hassio:
 
 homekit:
   filter:
-    include_domains:
-      - light
-      - media_player
-      - binary_sensor
-      - climate
-      - fan
-      - switch
-      - lock
-      - sensor
-      - input_boolean
+    include_entities:
+      - light.0x000b57fffe8a0038_light
+      - light.0x000b57fffe9757aa_light
+      - light.0x000b57fffed99840_light
+      - light.0x90fd9ffffe0f74af_light
+      - light.0x000b57fffed8512d_light
+      - light.0x000b57fffe9757aa_light
+      - light.0xd0cf5efffe7a08f7_light
+      - binary_sensor.0x00158d0002cb42ee_occupancy
+      - light.ablak_dekoracio
+      - light.fuggony_vilagitas
+      - light.karacsonyfa
+      - light.konyha_vilagitas
+      - light.szoba_vilagitas
+      - climate.szoba_termosztat
+      - binary_sensor.bejarati_ajto
+      - binary_sensor.bejarati_ajto_zar
+      - input_boolean.zigbee_permit_join
+      - script.mozi_bekapcsolasa
+      - script.mozi_kikapcsolasa
+      - sensor.homerseklet_konyha
+      - sensor.homerseklet_kulso
+      - sensor.homerseklet_szoba
+  entity_config:
+    light.0x000b57fffe8a0038_light:
+      name: Tükrös Lámpa
+    light.0x000b57fffe9757aa_light:
+      name: Fürdő Világitás
+    light.0x000b57fffed99840_light:
+      name: Állólámpa
+    light.0x90fd9ffffe0f74af_light:
+      name: Folyosó Extra
+    light.0x000b57fffed8512d_light:
+      name: Folyosó Világitás
+    light.0x000b57fffe9757aa_light:
+      name: WC Világitás
+    light.ablak_dekoracio:
+      name: Ablak Dekoráció
+    light.fuggony_vilagitas:
+      name: Hangulatfény
+    light.konyha_vilagitas:
+      name: Konyha Világitás
+    binary_sensor.0x00158d0002cb42ee_occupancy:
+      name: Konyha Motion
+      
 
-frontend:
-  themes:
-    cold:
-      primary-text-color: '#447ebc'
-      label-badge-red: '#447ebc'
-    comfortable:
-      primary-text-color: '#629e51'
-      label-badge-red: '#629e51'
-    hot:
-      primary-text-color: '#bf1b00'
-      label-badge-red: '#bf1b00'
+frontend: !include frontend.yaml
 
     
 ffmpeg:
@@ -83,7 +113,7 @@ http:
    api_password: !secret http_password
    ssl_certificate: /ssl/fullchain.pem
    ssl_key: /ssl/privkey.pem
-#   base_url: !secret url
+   base_url: https://whiterhass.duckdns.org
 
 mqtt:
   broker: localhost
@@ -91,35 +121,42 @@ mqtt:
   discovery: true
   discovery_prefix: homeassistant
 
-#media_player:
+
+    
+timer:
+  zigbee_permit_join:
+    name: Time remaining
+    duration: 600 # Updated this to the number of seconds you wish
+
+media_player:
 #  - platform: kodi
 #    host: 10.10.0.128
-#  - platform: yamaha
-#    host: 10.10.1.17
-#    source_ignore:
-#      - "AUX"
-#      - "HDMI6"
-#      - "USB"
-#      - "TUNER"
-#      - "SERVER"
-#      - "Qobuz"
-#      - "NET RADIO"
-#      - "JUKE"
-#      - "HDMI1"
-#      - "HDMI3"
-#      - "HDMI4"
-#      - "AUDIO1"
-#      - "AUDIO2"
-#      - "AV1"
-#      - "AV2"
-#      - "AV3"
-#      - "AV4"
-#      - "AUX"
-#      - "AirPlay"
-#      - "Bluetooth"
-#      - "MusicCast Link"
-#    source_names:
-#      HDMI2: "FireTV Stick"
+  - platform: yamaha
+    host: 10.10.1.17
+    source_ignore:
+      - "AUX"
+      - "HDMI6"
+      - "USB"
+      - "TUNER"
+      - "SERVER"
+      - "Qobuz"
+      - "NET RADIO"
+      - "JUKE"
+      - "HDMI1"
+      - "HDMI3"
+      - "HDMI4"
+      - "AUDIO1"
+      - "AUDIO2"
+      - "AV1"
+      - "AV2"
+      - "AV3"
+      - "AV4"
+      - "AUX"
+      - "AirPlay"
+      - "Bluetooth"
+      - "MusicCast Link"
+    source_names:
+      HDMI2: "FireTV Stick"
 
 notify:
   - name: pushover-noti
@@ -140,6 +177,10 @@ input_boolean:
   mom_present:
     name: Mom
     icon: mdi:account
+  zigbee_permit_join:
+    name: Allow devices to join
+    initial: off
+    icon: mdi:cellphone-wireless
 
 emulated_hue:
   host_ip: 10.10.0.22
@@ -167,3 +208,4 @@ group: !include group.yaml
 ios: !include ios.yaml
 device_tracker: !include device_tracker.yaml
 camera: !include camera.yaml
+panel_custom: !include panel_custom.yaml

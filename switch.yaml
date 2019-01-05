@@ -11,50 +11,6 @@
         friendly_name: "Benq Projector"
         command_on: 'JgDYAAABJ5EUEBQRFBEUEBUQFBAUERQRExEUERQQFRAUNRU0FBEUEBQ1FTQVNRQ1FBAUERU0FRAUEBQRFBAUERU0FDUVEBQ1FQAF7wABKJAVEBUQFBAVEBUQFBAUERQQFRAVEBQQFRAUNRU0FRAUEBU0FTQVNBU0FRAVEBQ1FQ8VEBQRFBAVEBQ1FTQVEBQ1FAAF8AABKJAVEBUQFBAUERUPFRAUERQQFRAVDxUQFRAUNRQ1FQ8VEBU0FTQVNBU0FRAVEBQ1FBAVEBUQFBAVEBQ1FTQVEBQ1FAANBQ=='
         command_off: 'JgCQAAABJ5EVEBQRExEVEBQQFBEUEBUQFBEUEBUQFQ8VNBU1FBAVEBQQFDUVNRQ1FBAVEBQ1FRAUNRQQFBEVDxQ1FTUUEBU0FQAF8AABJ5EVDxUQFRAUEBUQFQ8VEBUQFBAVEBQQFBEVNBU0FRAUEBQRFTQVNBU0FRAUEBU0FRAVNBUQFQ8VEBU0FTQVEBQ1FQANBQAAAAAAAAAA'
-
-  - platform: mqtt
-    name: "Folyosó Világítás"
-    icon: mdi:lightbulb
-    alias: "folyoso_light"
-    state_topic: "home/sonoff/living_room/1/stat"
-    command_topic: "home/sonoff/living_room/1"
-    qos: 1
-    payload_on: "on"
-    payload_off: "off"
-    retain: true
-    
-  - platform: mqtt
-    name: "Fürdő Világítás"
-    icon: mdi:lightbulb
-    alias: "bathroom_light"
-    state_topic: "home/light/bathroom/1/stat"
-    command_topic: "home/light/bathroom/1"
-    qos: 1
-    payload_on: "on"
-    payload_off: "off"
-    retain: true
-    
-  - platform: mqtt
-    name: "WC Világítás"
-    icon: mdi:lightbulb
-    alias: "wc_light"
-    state_topic: "home/light/wc/1/stat"
-    command_topic: "home/light/wc/1"
-    qos: 1
-    payload_on: "on"
-    payload_off: "off"
-    retain: true
-    
-  - platform: mqtt
-    name: "Konyha Világítás"
-    icon: mdi:lightbulb
-    alias: "kitchen_light"
-    state_topic: "home/sonoff/kitchen/1/stat"
-    command_topic: "home/sonoff/kitchen/1"
-    qos: 1
-    payload_on: "on"
-    payload_off: "off"
-    retain: true
     
   - platform: mqtt
     name: "Szoba Fűtőpanel"
@@ -76,13 +32,3 @@
     payload_off: "off"
     retain: true
 
-  - platform: mqtt
-    name: "Szoba Világítás"
-    icon: mdi:lightbulb
-    alias: "szoba_vilagitas"
-    state_topic: "home/sonoff/room/1/stat"
-    command_topic: "home/sonoff/room/1"
-    qos: 1
-    payload_on: "on"
-    payload_off: "off"
-    retain: true

@@ -1,153 +1,46 @@
-  - alias: "Media player paused/stopped"
+  - id: enable_zigbee_join
+    alias: Enable Zigbee joining
+    hide_entity: true
     trigger:
-      - platform: state
-        entity_id: media_player.kodi
-        from: 'playing'
-        to: 'paused'
+      platform: state
+      entity_id: input_boolean.zigbee_permit_join
+      to: 'on'
     action:
-        service: scene.turn_on
-        entity_id: scene.dim_up_movie
-  - alias: "Media player paused/stopped_"
-    trigger:
-      - platform: state
-        entity_id: media_player.kodi
-        from: 'paused'
-        to: 'playing'
-    action:
-        service: scene.turn_on
-        entity_id: scene.dim_down_movie
-  - alias: "Media player Idle to Playing"
-    trigger:
-      - platform: state
-        entity_id: media_player.kodi
-        from: 'idle'
-        to: 'playing'
-    action:
-        service: scene.turn_on
-        entity_id: scene.dim_down_movie
-#  - alias: "Turn_on_all_light_when_noone_at_home"
-#    trigger:
-#      - platform: state
-#        entity_id: device_tracker.whit33r_samsung_s7lan, device_tracker.lg_g4lan
-#        from: 'home'
-#        to: 'away'
-#    action:
-#        service: light.turn_off
-#        entity_id: light.karacsonyfa
-  - alias: "When_lightoff_lockoff"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.bejarati_ajto_zar
-        from: 'off'
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: switch.folyoso_vilagitas
-        state: 'on'
-    action:
-      - delay: '00:00:30'
-      - service: homeassistant.turn_off
-        entity_id: switch.folyoso_vilagitas
-  - alias: "When_lighton_lockoff"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.bejarati_ajto_zar
-        from: 'off'
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: switch.folyoso_vilagitas
-        state: 'off'
-    action:
-      - delay: '00:00:01'
-      - service: homeassistant.turn_on
-        entity_id: switch.folyoso_vilagitas
-  - alias: "Notify_pushover"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.bejarati_ajto_zar
-        from: 'off'
-        to: 'on'
-    action:
-      - service: notify.pushovernoti
-        data:
-          message: "Ajtózár Nyitva!"
-          title: "Home-Assistant"
-          data:
-            url: "https://www.home-assistant.io/"
-            sound: pianobar
-            priority: 0
-  
-  - alias: "Notify_ios"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.bejarati_ajto_zar
-        from: 'off'
-        to: 'on'
-        for:
-          minutes: 20
-    action:
-      service: notify.ios_mari
+    - service: mqtt.publish
       data:
-        message: "Bejárati Ajtó nyit van több mint 20 perce!"
-        data:
-          push:
-            badge: 5
-            category: "alarm"
-
-
-  - alias: Turn off kitchen light 10 minutes after last movement
+        topic: zigbee2mqtt/bridge/config/permit_join
+        payload: 'true'
+    - service: timer.start
+      data:
+        entity_id: timer.zigbee_permit_join
+  - id: disable_zigbee_join
+    alias: Disable Zigbee joining
     trigger:
-      - platform: state
-        entity_id: binary_sensor.mozgaserzekelo
-        to: 'off'
-        for:
-         minutes: 3
+    - entity_id: input_boolean.zigbee_permit_join
+      platform: state
+      to: 'off'
     action:
-      - service: homeassistant.turn_off
-        entity_id: switch.folyoso_vilagitas
-  - alias: Turn on kitchen light when there is movement
+    - data:
+        payload: 'false'
+        topic: zigbee2mqtt/bridge/config/permit_join
+      service: mqtt.publish
+    - data:
+        entity_id: timer.zigbee_permit_join
+      service: timer.cancel
+    hide_entity: true
+  - id: disable_zigbee_join_timer
+    alias: Disable Zigbee joining by timer
+    hide_entity: true
     trigger:
-     - platform: state
-       entity_id: binary_sensor.mozgaserzekelo
-       to: 'on'
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.zigbee_permit_join
     action:
-     - service: homeassistant.turn_on
-       entity_id: switch.folyoso_vilagitas
-  - alias: Turn off kitchen light 10 minutes after last movement_
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.mozgaserzekelo_furdo
-        to: 'off'
-        for:
-         minutes: 3
-    action:
-      - service: homeassistant.turn_off
-        entity_id: switch.furdo_vilagitas
-  - alias: Turn on kitchen light when there is movement_
-    trigger:
-     - platform: state
-       entity_id: binary_sensor.mozgaserzekelo_furdo
-       to: 'on'
-    action:
-     - service: homeassistant.turn_on
-       entity_id: switch.furdo_vilagitas
-  
-  - alias: Turn off kitchen light 10 minutes after last movement_wc
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.mozgaserzekelo_wc
-        to: 'off'
-        for:
-         minutes: 3
-    action:
-      - service: homeassistant.turn_off
-        entity_id: switch.wc_vilagitas
-  - alias: Turn on kitchen light when there is movement_wc
-    trigger:
-     - platform: state
-       entity_id: binary_sensor.mozgaserzekelo_wc
-       to: 'on'
-    action:
-     - service: homeassistant.turn_on
-       entity_id: switch.wc_vilagitas
+    - service: mqtt.publish
+      data:
+        topic: zigbee2mqtt/bridge/config/permit_join
+        payload: 'false'
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.zigbee_permit_join

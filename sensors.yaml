@@ -84,3 +84,8 @@
                 {{ states.sensor.battery_iphone_mom.state }}
             {%- endif %}
         device_class: battery
+
+  - platform: mqtt
+    name: Bridge state
+    state_topic: "zigbee2mqtt/bridge/state"
+    icon: mdi:router-wireless

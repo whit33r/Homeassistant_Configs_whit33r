@@ -51,6 +51,19 @@
     optimistic: false
     qos: 0
     
+  - platform: group
+    name: Konyha Világitás
+    entities:
+      - light.0x000b57fffed77344_light
+      - light.0x90fd9ffffe152b54_light
+      
+  - platform: group
+    name: szoba_vilagitas
+    friendly_name: Csillár
+    entities:
+      - light.0x90fd9ffffe0f00e3_light
+      - light.0xd0cf5efffeb427a8_light
+    
     #-------------------------------------------------
     #-----------------TESTING AREA--------------------
     #-------------------------------------------------
