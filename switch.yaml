@@ -13,8 +13,7 @@
         command_off: 'JgCQAAABJ5EVEBQRExEVEBQQFBEUEBUQFBEUEBUQFQ8VNBU1FBAVEBQQFDUVNRQ1FBAVEBQ1FRAUNRQQFBEVDxQ1FTUUEBU0FQAF8AABJ5EVDxUQFRAUEBUQFQ8VEBUQFBAVEBQQFBEVNBU0FRAUEBQRFTQVNBU0FRAUEBU0FRAVNBUQFQ8VEBU0FTQVEBQ1FQANBQAAAAAAAAAA'
     
   - platform: mqtt
-    name: "Szoba Fűtőpanel"
-    alias: "heater test"
+    name: "room_heater"
     icon: mdi:radiator
     state_topic: "home/sonoff/heater/1/stat"
     command_topic: "home/sonoff/heater/1"

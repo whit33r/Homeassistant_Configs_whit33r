@@ -1,25 +1,18 @@
   - platform: mqtt
     name: "Bejárati Ajtó"
-    icon: mdi:door
     state_topic: "sensor/maindoor/motion"
     qos: 0
     payload_on: "Nyitva"
     payload_off: "Zárva"
-    alias_on: 'Nyitva'
-    alias_off: 'Zárva'
     device_class: opening
 
   - platform: mqtt
     name: "Bejárati Ajtó Zár"
     state_topic: "sensor/maindoor/lock"
-    icon: mdi:lock
     qos: 0
     payload_on: "Nyitva"
     payload_off: "Zárva"
-    alias_on: 'Nyitva'
-    alias_off: 'Zárva'
     device_class: opening
-    homebridge_opening_type: window
 
   - platform: mqtt
     name: "Mozgásérzékelő"
@@ -27,8 +20,6 @@
     qos: 0
     payload_on: "Nyitva"
     payload_off: "Zárva"
-    alias_on: 'Mozgás'
-    alias_off: 'Nincs Mozgás'
     device_class: motion
 
   - platform: command_line

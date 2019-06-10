@@ -11,7 +11,7 @@
       - group.awesome_people
 #      - group.system
       - group.zones
-#      - group.zigbee_group
+      - group.zigbee_group
   room:
     name: Szoba
     entities:
@@ -43,19 +43,23 @@
       - light.0x90fd9ffffe0f74af_light
       - binary_sensor.bejarati_ajto
       - binary_sensor.bejarati_ajto_zar
-      - binary_sensor.mozgaserzekelo
-      - binary_sensor.0x00158d0002cb42ee_occupancy
+      - binary_sensor.motion_sensor_158d000257d85f
+      - binary_sensor.switch_158d0002c6f484
+      - binary_sensor.motion_sensor_158d0002e2dc7a
+      - sensor.0x00158d0002b57b88_humidity
+      - sensor.temperature_158d0002b57b88
+      - binary_sensor.motion_sensor_158d0002e2dc7a
       - camera.bejarat_kamera
   climate:
     name: Hőmérséklet
     view: no
     icon: mdi:weather-cloudy
     entities:
-      - sensor.homerseklet_szoba
-      - sensor.homerseklet_konyha
+      - sensor.0x00158d0002c9f386_temperature #Szoba
+      - sensor.0x00158d0002b57b88_temperature #Konyha
       - sensor.homerseklet_kulso
       - climate.szoba_termosztat
-      - switch.szoba_futopanel
+      - switch.room_heater
   power:
     name: Fogyasztás
 #    view: no

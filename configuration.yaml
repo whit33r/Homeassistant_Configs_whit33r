@@ -106,14 +106,14 @@ config:
 climate:
   - platform: generic_thermostat
     name: Szoba Termosztát
-    heater: switch.szoba_futopanel
+    heater: switch.room_heater
     target_sensor: sensor.homerseklet_szoba
 
 http:
    api_password: !secret http_password
    ssl_certificate: /ssl/fullchain.pem
    ssl_key: /ssl/privkey.pem
-   base_url: https://whiterhass.duckdns.org
+   base_url: https://whiterhass.duckdns.org:8123
 
 mqtt:
   broker: localhost
@@ -121,7 +121,10 @@ mqtt:
   discovery: true
   discovery_prefix: homeassistant
 
-
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: FC1C5F4799204490
     
 timer:
   zigbee_permit_join:

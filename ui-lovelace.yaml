@@ -52,7 +52,7 @@ views:
           - sensor.dark_sky_precip_probability
           - sensor.dark_sky_summary
           - climate.szoba_termosztat
-          - switch.szoba_futopanel
+          - switch.room_heater
       - type: entities
         title: "Fogyaszt\xE1s"
         show_header_toggle: true

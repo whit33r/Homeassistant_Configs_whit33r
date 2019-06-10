@@ -25,7 +25,6 @@
       - twinkle
       - Thanksgiving
     brightness: true
-    flash: true
     rgb: true
     optimistic: false
     qos: 0
@@ -33,11 +32,9 @@
   - platform: mqtt
     schema: json
     name: "Karácsonyfa"
-    alias: "Karácsonyfa"
     state_topic: "homeassistant/room/tree"
     command_topic: "homeassistant/room/tree/set"
 #    brightness: true
-    icon: mdi:pine-tree
     optimistic: false
     qos: 0
     
@@ -59,7 +56,6 @@
       
   - platform: group
     name: szoba_vilagitas
-    friendly_name: Csillár
     entities:
       - light.0x90fd9ffffe0f00e3_light
       - light.0xd0cf5efffeb427a8_light

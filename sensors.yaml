@@ -7,7 +7,6 @@
       - precip_intensity
       - precip_probability
       - cloud_cover
-    update_interval: '00:03'
     language: hu
 
   - platform: yr
@@ -16,21 +15,18 @@
     name: "Hőmérséklet Konyha"
     state_topic: "/home/temp/kitchen"
     qos: 0
-    force_update: true
     unit_of_measurement: "°C"
     device_class: temperature  
   - platform: mqtt
     name: "Hőmérséklet Szoba"
     state_topic: "/home/temp/room"
     qos: 0
-    force_update: true
     unit_of_measurement: "°C"
     device_class: temperature
   - platform: mqtt
     name: "Hőmérséklet Külső"
     state_topic: "/home/temp/outside"
     qos: 0
-    force_update: true
     unit_of_measurement: "°C"
     device_class: temperature  
   - platform: mqtt
@@ -38,25 +34,21 @@
     state_topic: "sonoff/volt"
     icon: mdi:power
     unit_of_measurement: "V"
-    force_update: true
   - platform: mqtt
     name: "Jelenlegi Teljesítmény"
     state_topic: "sonoff/power"
     icon: mdi:power
     unit_of_measurement: "W"
-    force_update: true
   - platform: mqtt
     name: "Össz Fogyasztás"
     state_topic: "sonoff/totalenergy"
     icon: mdi:power
     unit_of_measurement: "kWh"
-    force_update: true
   - platform: mqtt
     name: "Fényerősség"
     icon: mdi:spotlight-beam
     state_topic: "room/ambient_light"
     unit_of_measurement: "Lux"
-    force_upcate: true
     device_class: illuminance
 
   - platform: template
