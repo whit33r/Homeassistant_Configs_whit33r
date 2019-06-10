@@ -28,8 +28,8 @@ influxdb:
 
 apple_tv:
   - host: 10.10.1.181
-    login_id: 00000003-bd3e-9ff2-d106-ce803e1b4ca9
-    credentials: 91E6A768D456A33A:5AFBC05A04334F47F1EAA32BE9A6C46403841C79347ED4129D98F76DD3B1B9BB
+    login_id: !secret apple_tv_loginid
+    credentials: !secret appletv_cred
     
 panel_iframe:
   nodered:
@@ -113,7 +113,7 @@ http:
    api_password: !secret http_password
    ssl_certificate: /ssl/fullchain.pem
    ssl_key: /ssl/privkey.pem
-   base_url: https://whiterhass.duckdns.org:8123
+   base_url: !secret base_url
 
 mqtt:
   broker: localhost
@@ -124,7 +124,7 @@ mqtt:
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
-    - key: FC1C5F4799204490
+    - key: !secret aqarakey
     
 timer:
   zigbee_permit_join:
@@ -168,10 +168,10 @@ notify:
     user_key: !secret notifykey
   - name: iosferi
     platform: ios
-    target: 82fb16ae-ff77-35db-a7e0-8ca32114d6ad
+    target: !secret iosferi
   - name: iosmom
     platform: ios
-    target: 1fc596fb-05e2-33a7-b6f9-1dc1b04a8b9d
+    target: !secret iosmom
     
 input_boolean:
   me_present:
